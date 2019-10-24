@@ -359,14 +359,16 @@ enroll_user_in_course <- function(course_id,
                                   user_id,
                                   enrollment_type = NULL,
                                   enrollment_state = NULL,
-                                  course_section_id = NULL) {
+                                  course_section_id = NULL,
+                                  interaction_limit = FALSE) {
   url <- paste0(canvas_url(),
                 paste("courses", course_id, "enrollments", sep = "/"))
 
   args <- list(`enrollment[user_id]` = user_id,
                `enrollment[type]` = enrollment_type,
                `enrollment[enrollment_state]` = enrollment_state,
-               `enrollment[course_section_id]` = course_section_id)
+               `enrollment[course_section_id]` = course_section_id,
+               `enrollment[limit_privileges_to_course_section] = interaction_limit`)
 
   res <- canvas_query(urlx = url, args = args, type = "POST")
 
@@ -711,3 +713,28 @@ update_course_settings <- function(course_id,
   resp <- canvas_query(url,args,"PUT")
   return(resp)
 }
+
+
+#' Get users in account
+#'
+#' @param account_id the canvas id of the account (integer)
+#' @param enrollment_type the canvas enrollment type. User either "student", "teacher", "ta", "observer" or "designer" (character)
+#'
+#' @return
+#' @export
+#'
+#' @examples
+get_users_in_account <- function(account_id, enrollment_type = NULL) {
+  url <-  paste0(canvas_url(),
+                 paste("accounts", account_id, "users", sep = "/"))
+  
+  args <- list(`enrollment_type` = enrollment_type,
+               per_page = 100)
+  
+  users <-  process_response(url, args)
+  
+  return(users)
+}
+
+
+
