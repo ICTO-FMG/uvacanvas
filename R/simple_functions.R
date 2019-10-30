@@ -368,7 +368,7 @@ enroll_user_in_course <- function(course_id,
                `enrollment[type]` = enrollment_type,
                `enrollment[enrollment_state]` = enrollment_state,
                `enrollment[course_section_id]` = course_section_id,
-               `enrollment[limit_privileges_to_course_section] = interaction_limit`)
+               `enrollment[limit_privileges_to_course_section]` = interaction_limit)
 
   res <- canvas_query(urlx = url, args = args, type = "POST")
 
