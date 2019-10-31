@@ -720,7 +720,7 @@ update_course_settings <- function(course_id,
 #' Get users in account
 #'
 #' @param account_id the canvas id of the account (integer)
-#' @param enrollment_type the canvas enrollment type. User either "student", "teacher", "ta", "observer" or "designer" (character)
+#' @param enrollment_type the canvas enrollment type. Use either "student", "teacher", "ta", "observer" or "designer" (character)
 #'
 #' @return
 #' @export
@@ -738,5 +738,24 @@ get_users_in_account <- function(account_id, enrollment_type = NULL) {
   return(users)
 }
 
-
+#' Get users in course
+#'
+#' @param course_id the canvas id of the course (integer)
+#' @param enrollment_type the canvas enrollment type to return. Use either "StudentEnrollment", "TeacherEnrollment", "TaEnrollment", "ObserverEnrollment" or "DesignerEnrollment". Default returns all roles. (character)
+#' @param enrollment_state include users with a specific state. Use either "active", "invited", "deleted" or "completed". Default is "active"  and "invited" (character)
+#' @return
+#' @export
+#'
+#' @examples
+get_users_in_course <- function(course_id, enrollment_type = NULL, enrollment_state = NULL ) {
+  url <-  paste0(canvas_url(),
+                 paste("accounts", account_id, "users", sep = "/"))
+  
+  args <- list(`type[]` = enrollment_type,
+               `state[]` = enrollment_state)
+  
+  users <-  process_response(url, args)
+  
+  return(users)
+}
 
