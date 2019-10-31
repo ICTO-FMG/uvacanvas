@@ -347,6 +347,8 @@ create_group_membership <- function(group_id,
 #' 
 #' @param course_section_id the id of the section for the enrollment. Can be located in the URL
 #' when visiting the section page in the browser. 
+#' 
+#' @param interaction_limit limit interaction with users to section only.
 #'
 #' @return nothing if everything went correct
 #' @export
