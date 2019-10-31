@@ -15,8 +15,6 @@ for(i in seq_along(course_sections)){
   section_enrollments <- get_section_enrollments(course_sections[i]) 
   section_enrollments <- section_enrollments$id
   
-  section_enrollments <- section_enrollments$id
-  
   lapply(section_enrollments,delete_section_enrollments, course_id = course_id, task = "delete")
   
   delete_section(course_sections[i])
