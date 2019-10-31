@@ -749,7 +749,7 @@ get_users_in_account <- function(account_id, enrollment_type = NULL) {
 #' @examples
 get_users_in_course <- function(course_id, enrollment_type = NULL, enrollment_state = NULL ) {
   url <-  paste0(canvas_url(),
-                 paste("accounts", account_id, "users", sep = "/"))
+                 paste("courses", course_id, "enrollments", sep = "/"))
   
   args <- list(`type[]` = enrollment_type,
                `state[]` = enrollment_state)
