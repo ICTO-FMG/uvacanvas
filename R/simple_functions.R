@@ -770,3 +770,56 @@ get_users_in_course <- function(course_id, enrollment_type = NULL, enrollment_st
   return(users)
 }
 
+#' Set courses dates
+#' 
+#' This function sets course starting date and end date
+#' 
+#' @param course_id the canvas id of the course (integer)
+#' @param start_date starting date in ISO DateTime format or use NA for no date (character)
+#' @param end_date end date in ISO DateTime format or use NA for no date (character)
+#' 
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
+#' 
+#' @export
+#' 
+#' @examples 
+#' 
+#' set_course_dates(404, start_date = "2019-01-01T00:00Z")
+#' set_course_dates(404, start_date = NA, end_date = NA )
+set_course_dates <- function(course_id, start_date = NULL, end_date = NULL){
+  url <- paste0(canvas_url(),
+                paste("courses", course_id, sep = "/"))
+  
+  args <- list(`course[start_at]` = start_date,
+               `course[end_at]` = end_date)
+  
+  settings <- canvas_query(url,args, "PUT")
+  
+  return(settings)
+}
+
+#' Set course name
+#' 
+#' This function sets the course name
+#' 
+#' @param course_id the canvas id of the course (integer)
+#' @param name the new name of the course (character)
+#' 
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
+#' 
+#' @export
+#' 
+#' @examples 
+#' 
+#' set_course_name(404, name = "My course name")
+
+set_course_name <- function(course_id, name){
+  url <- paste0(canvas_url(),
+                paste("courses", course_id, sep = "/"))
+  
+  args <- list(`course[name]` = name)
+  
+  settings <- canvas_query(url,args, "PUT")
+  
+  return(settings)
+}

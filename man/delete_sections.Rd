@@ -2,7 +2,7 @@
 % Please edit documentation in R/delete_sections.R
 \name{delete_sections}
 \alias{delete_sections}
-\title{Delete course sections}
+\title{Delete sections from a course}
 \usage{
 delete_sections(course_id, section_ids = "all")
 }
