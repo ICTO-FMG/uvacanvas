@@ -7,8 +7,20 @@
 create_group_membership(group_id, user_id)
 }
 \arguments{
-\item{user_id}{}
+\item{group_id}{the group id (integer)}
+
+\item{user_id}{the canvas id of the user (string). Alternatively, the sis_id can
+be used by setting "sis_login_id:" in front of the sis_id.}
+}
+\value{
+nothing or statuscode 200 if correct
 }
 \description{
-create_group_membership
+This function is used to create a group membership for a specific user in 
+a specific course.
+}
+\examples{
+
+create_group_membership(group_id = 4095, user_id = "sis_login_id: pbosman")
+
 }

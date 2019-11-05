@@ -8,7 +8,9 @@ Deletes a specific page in a course. Does not delete pages pushed by blue_print 
 delete_course_page(course_id, html_url)
 }
 \arguments{
-\item{html_url}{the html_url of the page. Can be found in the get_course_pages return.}
+\item{course_id}{the canvas id of the course (integer)}
+
+\item{html_url}{the html_url of the page. Can be found in the get_course_pages return. (character)}
 }
 \description{
 delete_course_page

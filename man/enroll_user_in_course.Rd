@@ -5,7 +5,8 @@
 \title{Enroll a User in a Course}
 \usage{
 enroll_user_in_course(course_id, user_id, enrollment_type = NULL,
-  enrollment_state = NULL, course_section_id = NULL)
+  enrollment_state = NULL, course_section_id = NULL,
+  interaction_limit = FALSE)
 }
 \arguments{
 \item{course_id}{the course id (integer)}
@@ -22,13 +23,15 @@ the default is used.}
 
 \item{course_section_id}{the id of the section for the enrollment. Can be located in the URL
 when visiting the section page in the browser.}
+
+\item{interaction_limit}{limit interaction with users to section only.}
 }
 \value{
 nothing if everything went correct
 }
 \description{
 This function is used to enroll a user in a specific course.
-Enrollmentsettings can be altered, such as silent or invited enrollment and
+Enrollment-settings can be altered, such as silent or invited enrollment and
 teacher or student enrollment.
 }
 \examples{

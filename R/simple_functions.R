@@ -158,8 +158,8 @@ get_course_pages <- function(course_id) {
 #' delete_course_page
 #' Deletes a specific page in a course. Does not delete pages pushed by blue_print courses
 #' 
-#' @param course_id
-#' @param html_url the html_url of the page. Can be found in the get_course_pages return.
+#' @param course_id the canvas id of the course (integer)
+#' @param html_url the html_url of the page. Can be found in the get_course_pages return. (character)
 #'
 #' @return
 #' @export
@@ -515,8 +515,8 @@ show_page_content_in_course <- function(course_id,link) {
 #' This page updates the page content of a page. Content must be written in html.
 #'
 #' @param course_id the canvas id of the course (integer)
-#' @param link
-#' @param page_body new text written in html
+#' @param link url link of the page (character)
+#' @param page_body new text written in html (character)
 #'
 #' @return
 #' @export

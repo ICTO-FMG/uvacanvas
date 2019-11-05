@@ -9,8 +9,22 @@ create_course_group_category(course_id, groupcat_name,
   create_group_count = NULL)
 }
 \arguments{
+\item{course_id}{the canvas id of the course (integer)}
+
+\item{groupcat_name}{the name of the group category (character/string)}
+
+\item{self_signup}{allow self signup by studentes (boolean)}
+
+\item{auto_leader}{automatically assign leader (boolean)}
+
+\item{group_limit}{set group limit (integer)}
+
 \item{create_group_count}{}
 }
 \description{
 create_course_group_category
+}
+\examples{
+
+create_course_group_category(course_id = 6824, groupcat_name = "Werkgroepen")
 }

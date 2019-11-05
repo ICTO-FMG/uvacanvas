@@ -8,9 +8,15 @@ Deletes a specified module in a course.}
 delete_course_module(course_id, module_id)
 }
 \arguments{
-\item{module_id}{}
+\item{course_id}{the canvas id of the course (integer)}
+
+\item{module_id}{the canvas id of the module (integer)}
 }
 \description{
 delete_course_module
 Deletes a specified module in a course.
+}
+\examples{
+
+delete_course_module(course_id = 6824, module_id = 412)
 }

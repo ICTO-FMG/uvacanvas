@@ -9,8 +9,18 @@ create_course_group_in_category(groupcat_id, name, description = NULL,
   sis_group_id = NULL)
 }
 \arguments{
-\item{sis_group_id}{}
+\item{groupcat_id}{the canvas id of the group category (integer)}
+
+\item{name}{the name of the group(string/character)}
+
+\item{description}{a description of the group (string/character)}
+
+\item{is_public}{make the group public (boolean)}
+
+\item{storage_quota_mb}{storage quota of the group page in megabytes (integer)}
+
+\item{sis_group_id}{the sis id of the group (integer)}
 }
 \description{
-create_course_group_in_category
+Creates a group in a predefined Canvas group category
 }

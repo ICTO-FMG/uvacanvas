@@ -7,8 +7,16 @@
 get_section_enrollments(section_id)
 }
 \arguments{
-\item{section_id}{}
+\item{section_id}{the canvas id of the section (integer)}
+}
+\value{
+a dataframe containing all the section enrollments
 }
 \description{
-get_section_enrollments
+This function gets all the enrollments for a specific section in a course.
+}
+\examples{
+
+get_section_enrollments(17234)
+
 }

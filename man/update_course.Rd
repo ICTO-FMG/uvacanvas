@@ -7,6 +7,8 @@
 update_course(course_id, syllabus_body = NULL)
 }
 \arguments{
+\item{course_id}{the canvas id of the course}
+
 \item{syllabus_body}{}
 }
 \description{

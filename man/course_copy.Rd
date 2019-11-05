@@ -2,8 +2,7 @@
 % Please edit documentation in R/simple_functions.R
 \name{course_copy}
 \alias{course_copy}
-\title{course_copy
-This function creates a standard course copy from one course to another.}
+\title{course_copy}
 \usage{
 course_copy(course_id, source_course_id)
 }
@@ -13,9 +12,8 @@ course_copy(course_id, source_course_id)
 \item{source_course_id}{The source course id}
 }
 \value{
-a contant migration.
+a content migration.
 }
 \description{
-course_copy
 This function creates a standard course copy from one course to another.
 }

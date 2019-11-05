@@ -8,9 +8,13 @@ Returns a data frame with all the pages in a course.}
 get_course_pages(course_id)
 }
 \arguments{
-\item{course_id}{}
+\item{course_id}{the canvas id of the course (integer)}
 }
 \description{
 get_course_pages
 Returns a data frame with all the pages in a course.
+}
+\examples{
+
+get_course_pages(course_id = 6824)
 }

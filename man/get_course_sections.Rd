@@ -2,13 +2,19 @@
 % Please edit documentation in R/simple_functions.R
 \name{get_course_sections}
 \alias{get_course_sections}
-\title{get_course_sections}
+\title{get_course_sections
+Get sections information in course}
 \usage{
 get_course_sections(course_id)
 }
 \arguments{
-\item{course_id}{}
+\item{course_id}{the canvas id of the course (integer)}
 }
 \description{
 get_course_sections
+Get sections information in course
+}
+\examples{
+
+get_course_sections(course_id = 6824)
 }
