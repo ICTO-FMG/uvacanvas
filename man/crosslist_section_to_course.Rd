@@ -11,6 +11,13 @@ crosslist_section_to_course(section_id, new_course_id)
 
 \item{new_course_id}{the canvas id of the new course (integer)}
 }
+\value{
+server response. Either 200 status code if everything went correctly or a specific http status warning.
+}
 \description{
 This functions crosslist a section to a new course
+}
+\examples{
+
+crosslist_section_to_course(12345, 6348)
 }

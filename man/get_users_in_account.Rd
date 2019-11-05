@@ -11,6 +11,13 @@ get_users_in_account(account_id, enrollment_type = NULL)
 
 \item{enrollment_type}{the canvas enrollment type. Use either "student", "teacher", "ta", "observer" or "designer" (character)}
 }
+\value{
+A dataframe containing information about users in the specified subaccount
+}
 \description{
-Get users in account
+Gets all user information from a specified account. You can use the argument enrollment_type to set a specific filter to user type, to save some time.
+}
+\examples{
+
+get_users_in_account(123, "teacher")
 }

@@ -9,9 +9,12 @@ update_page_body(course_id, link, page_body)
 \arguments{
 \item{course_id}{the canvas id of the course (integer)}
 
-\item{link}{url link of the page (character)}
+\item{link}{url link/ name of the page (character)}
 
 \item{page_body}{new text written in html (character)}
+}
+\value{
+server response. Either 200 status code if everything went correctly or a specific http status warning.
 }
 \description{
 This page updates the page content of a page. Content must be written in html.

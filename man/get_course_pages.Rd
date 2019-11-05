@@ -10,6 +10,9 @@ get_course_pages(course_id)
 \arguments{
 \item{course_id}{the canvas id of the course (integer)}
 }
+\value{
+A dataframe containing course page information.
+}
 \description{
 get_course_pages
 Returns a data frame with all the pages in a course.

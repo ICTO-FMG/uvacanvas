@@ -38,6 +38,13 @@ update_course_settings(course_id, allow_student_discussion_topics = NULL,
 
 \item{home_page_announcement_limit}{set announcements limit on homepage announcements (integer)}
 }
+\value{
+server response. Either 200 status code if everything went correctly or a specific http status warning.
+}
 \description{
 This functions update the settings of a course.
+}
+\examples{
+
+update_course_settings(6348, hide_final_grades = T, hide_distribution_graphs = T)
 }

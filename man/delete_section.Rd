@@ -3,6 +3,7 @@
 \name{delete_section}
 \alias{delete_section}
 \title{delete_course_section
+PLEASE NOTE: To delete a course section, the section needs to be empty, This function does not empty the section. Use delete_sections for this task.
 Deletes a specified module in a course.}
 \usage{
 delete_section(section_id)
@@ -10,7 +11,15 @@ delete_section(section_id)
 \arguments{
 \item{section_id}{the canvas id of the section (integer)}
 }
+\value{
+server response. Either 200 status code if everything went correctly or a specific http status warning.
+}
 \description{
 delete_course_section
+PLEASE NOTE: To delete a course section, the section needs to be empty, This function does not empty the section. Use delete_sections for this task.
 Deletes a specified module in a course.
+}
+\examples{
+
+delete_section(12345)
 }

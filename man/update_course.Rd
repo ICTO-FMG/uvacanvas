@@ -7,10 +7,10 @@
 update_course(course_id, syllabus_body = NULL)
 }
 \arguments{
-\item{course_id}{the canvas id of the course}
+\item{course_id}{the canvas id of the course (integer)}
 
-\item{syllabus_body}{}
+\item{syllabus_body}{the syllabus text body written in html (character)}
 }
 \description{
-This function allows for changes to all important settings of a course.
+This function allows for changes to the syllabus body.
 }

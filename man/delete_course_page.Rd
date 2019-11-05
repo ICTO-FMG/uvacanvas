@@ -12,6 +12,9 @@ delete_course_page(course_id, html_url)
 
 \item{html_url}{the html_url of the page. Can be found in the get_course_pages return. (character)}
 }
+\value{
+server response. Either 200 status code if everything went correctly or a specific http status warning.
+}
 \description{
 delete_course_page
 Deletes a specific page in a course. Does not delete pages pushed by blue_print courses

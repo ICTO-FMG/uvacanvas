@@ -27,7 +27,7 @@ when visiting the section page in the browser.}
 \item{interaction_limit}{limit interaction with users to section only.}
 }
 \value{
-nothing if everything went correct
+server response. Either 200 status code if everything went correctly or a specific http status warning.
 }
 \description{
 This function is used to enroll a user in a specific course.

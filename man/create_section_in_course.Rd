@@ -26,6 +26,9 @@ create_section_in_course(course_id, name, sis_section_id = NULL,
 
 \item{enable_sis_reactivation}{}
 }
+\value{
+server response. Either 200 status code if everything went correctly or a specific http status warning.
+}
 \description{
 This function creates a section in a Canvas course
 }

@@ -9,8 +9,14 @@ show_page_content_in_course(course_id, link)
 \arguments{
 \item{course_id}{the canvas id of the course (integer)}
 
-\item{link}{}
+\item{link}{name of the page (character)}
+}
+\value{
+A dataframe containing page content in html format.
 }
 \description{
-Show page content of a course
+Gets page content of a course.
+}
+\examples{
+
 }

@@ -9,6 +9,9 @@ get_assignment_stats_in_course(course_id)
 \arguments{
 \item{course_id}{the canvas id of the course (integer)}
 }
+\value{
+A dataframe containing assignment statistics
+}
 \description{
 Get assignment statistics in a course
 }

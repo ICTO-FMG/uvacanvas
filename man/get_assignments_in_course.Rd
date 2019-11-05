@@ -9,6 +9,9 @@ get_assignments_in_course(course_id)
 \arguments{
 \item{course_id}{the canvas id of the course (integer)}
 }
+\value{
+A dataframe containing assignment information of all assignments from the specified course
+}
 \description{
 Get all assignments information in Course
 }

@@ -9,6 +9,13 @@ get_groups_in_course(course_id)
 \arguments{
 \item{course_id}{the canvas id of the course (integer)}
 }
+\value{
+A dataframe containing information about all groups in a course
+}
 \description{
-Get groups in course
+This function returns data about all groups in a specified course
+}
+\examples{
+
+get_groups_in_course(6348)
 }

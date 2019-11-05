@@ -13,7 +13,7 @@ create_group_membership(group_id, user_id)
 be used by setting "sis_login_id:" in front of the sis_id.}
 }
 \value{
-nothing or statuscode 200 if correct
+server response. Either 200 status code if everything went correctly or a specific http status warning.
 }
 \description{
 This function is used to create a group membership for a specific user in 

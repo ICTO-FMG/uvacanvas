@@ -9,6 +9,13 @@ get_members_in_group(group_id)
 \arguments{
 \item{group_id}{the canvas id of the group (integer)}
 }
+\value{
+A dataframe with information about members of a specified group
+}
 \description{
 This functions gets user info of a group membership
+}
+\examples{
+
+get_members_in_group(11267)
 }

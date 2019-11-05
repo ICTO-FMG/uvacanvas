@@ -36,10 +36,10 @@ get_courses_in_account <- function(account_id, include = NULL) {
 
 #' Update a Course
 #' 
-#' This function allows for changes to all important settings of a course.
+#' This function allows for changes to the syllabus body.
 #'
-#' @param course_id the canvas id of the course
-#' @param syllabus_body 
+#' @param course_id the canvas id of the course (integer)
+#' @param syllabus_body the syllabus text body written in html (character)
 #'
 #' @return 
 #' @export
@@ -63,7 +63,7 @@ update_course <- function(course_id,
 #' course_copy
 #' 
 #' This function creates a standard course copy from one course to another.
-#' 
+#'
 #' 
 #' @param course_id The course id
 #' @param source_course_id The source course id
@@ -118,7 +118,7 @@ get_course_modules <- function(course_id) {
 #' @param course_id the canvas id of the course (integer)
 #' @param module_id the canvas id of the module (integer)
 #'
-#' @return
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
 #' @export
 #'
 #' @examples
@@ -137,7 +137,7 @@ delete_course_module <- function(course_id, module_id) {
 #' 
 #' @param course_id the canvas id of the course (integer)
 #'
-#' @return
+#' @return A dataframe containing course page information.
 #' @export
 #'
 #' @examples
@@ -161,7 +161,7 @@ get_course_pages <- function(course_id) {
 #' @param course_id the canvas id of the course (integer)
 #' @param html_url the html_url of the page. Can be found in the get_course_pages return. (character)
 #'
-#' @return
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
 #' @export
 #'
 #' @examples
@@ -185,7 +185,7 @@ delete_course_page <- function(course_id,
 #' @param group_limit set group limit (integer)
 #' @param create_group_count
 #'
-#' @return
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
 #' @export
 #'
 #' @examples
@@ -218,7 +218,7 @@ create_course_group_category <- function(course_id,
 #'
 #' @param course_id the canvas id of the course (integer)
 #'
-#' @return
+#' @return A dataframe containing information about section in the specified course.
 #' @export
 #'
 #' @examples
@@ -248,10 +248,13 @@ get_course_sections <- function(course_id) {
 #' @param storage_quota_mb storage quota of the group page in megabytes (integer)
 #' @param sis_group_id the sis id of the group (integer)
 #'
-#' @return
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
 #' @export
 #'
 #' @examples
+#' 
+#' create_course_group_in_category(6348, "Werkgroepen_1")
+#' create_course_group_in_category(groupcat_id = 6348, name = "Werkgroepen_1", is_public = T, storage_quota_mb = 20)
 create_course_group_in_category <- function(groupcat_id,
                                     name,
                                     description = NULL,
@@ -307,7 +310,7 @@ get_section_enrollments <- function(section_id){
 #' @param user_id the canvas id of the user (string). Alternatively, the sis_id can
 #' be used by setting "sis_login_id:" in front of the sis_id.
 #'
-#' @return nothing or statuscode 200 if correct
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
 #' @export
 #'
 #' @examples
@@ -350,7 +353,7 @@ create_group_membership <- function(group_id,
 #' 
 #' @param interaction_limit limit interaction with users to section only.
 #'
-#' @return nothing if everything went correct
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
 #' @export
 #'
 #' @examples
@@ -391,7 +394,7 @@ enroll_user_in_course <- function(course_id,
 #' @param restrict_enrollments_to_section_dates restrict enrollments to a specific date 
 #' @param enable_sis_reactivation 
 #'
-#' @return
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
 #' @export
 #'
 #' @examples
@@ -426,7 +429,7 @@ create_section_in_course <- function(course_id,
 #'
 #' @param course_id the canvas id of the course (integer)
 #'
-#' @return
+#' @return A dataframe containing assignment statistics
 #' @export
 #'
 #' @examples
@@ -449,7 +452,7 @@ get_assignment_stats_in_course <- function(course_id) {
 #'
 #' @param course_id the canvas id of the course (integer)
 #'
-#' @return
+#' @return A dataframe containing assignment information of all assignments from the specified course
 #' @export
 #'
 #' @examples
@@ -467,38 +470,18 @@ get_assignments_in_course <- function(course_id) {
 }
 
 
-#' Get pages in course
-#' 
-#' Get all page information in course
-#'
-#' @param course_id the canvas id of the course (integer)
-#'
-#' @return
-#' @export
-#'
-#' @examples
-#' 
-#' get_pages_in_course(6824)
-get_pages_in_course <- function(course_id) {
-  url <-  paste0(canvas_url(),
-                 paste("courses", course_id, "pages", sep = "/"))
-  
-  args <- list(per_page = 100)
-  
-  pages <-  process_response(url, args)
-  
-  return(pages)
-}
-
 #' Show page content of a course
+#' 
+#' Gets page content of a course.
 #'
 #' @param course_id the canvas id of the course (integer)
-#' @param link 
+#' @param link  name of the page (character)
 #'
-#' @return
+#' @return A dataframe containing page content in html format.
 #' @export
 #'
 #' @examples
+#' 
 show_page_content_in_course <- function(course_id,link) {
   url <-  paste0(canvas_url(),
                  paste("courses", course_id, "pages", link, sep = "/"))
@@ -515,10 +498,10 @@ show_page_content_in_course <- function(course_id,link) {
 #' This page updates the page content of a page. Content must be written in html.
 #'
 #' @param course_id the canvas id of the course (integer)
-#' @param link url link of the page (character)
+#' @param link url link/ name of the page (character)
 #' @param page_body new text written in html (character)
 #'
-#' @return
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
 #' @export
 #'
 #' @examples
@@ -544,10 +527,12 @@ update_page_body <- function(course_id,
 #' @param course_id the canvas id of the course (integer)
 #' @param assignment_id the canvas id of the assignment (integer)
 #'
-#' @return
+#' @return A dataframe containing information about a specified assignment from a specified course.
 #' @export
 #'
 #' @examples
+#' 
+#' get_single_assingment_in_course(6348, 10234)
 get_single_assignment_in_course <- function(course_id, assignment_id) {
   url <-  paste0(canvas_url(),
                  paste("courses", course_id, "assignments", assignment_id, sep = "/"))
@@ -561,12 +546,16 @@ get_single_assignment_in_course <- function(course_id, assignment_id) {
 
 #' Get groups in course
 #'
+#' This function returns data about all groups in a specified course
+#'
 #' @param course_id the canvas id of the course (integer)
 #'
-#' @return
+#' @return A dataframe containing information about all groups in a course
 #' @export
 #'
 #' @examples
+#' 
+#' get_groups_in_course(6348)
 get_groups_in_course <- function(course_id) {
   url <-  paste0(canvas_url(),
                  paste("courses", course_id, "groups", sep = "/"))
@@ -584,10 +573,12 @@ get_groups_in_course <- function(course_id) {
 #'
 #' @param group_id the canvas id of the group (integer)
 #'
-#' @return
+#' @return A dataframe with information about members of a specified group
 #' @export
 #'
 #' @examples
+#' 
+#' get_members_in_group(11267)
 get_members_in_group <- function(group_id) {
   url <-  paste0(canvas_url(),
                  paste("groups", group_id, "memberships", sep = "/"))
@@ -600,14 +591,17 @@ get_members_in_group <- function(group_id) {
 }
 
 #' delete_course_section
-#' Deletes a specified module in a course.
+#' PLEASE NOTE: To delete a course section, the section needs to be empty, This function does not empty the section. Use delete_sections for this task.
+#' Deletes a specified module in a course. 
 #'
 #' @param section_id the canvas id of the section (integer)
 #'
-#' @return
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
 #' @export
 #'
 #' @examples
+#' 
+#' delete_section(12345)
 delete_section <- function(section_id) {
   
   url <- paste0(canvas_url(),
@@ -623,13 +617,15 @@ delete_section <- function(section_id) {
 #' deactivate the enrollment.
 #' 
 #' @param course_id the canvas id of the course (integer)
-#' @param section_id the canvas id of the section (integer)
-#' @param task action to take on the enrollment
+#' @param enrollment_id the canvas user_id of the section enrollment (integer)
+#' @param task action to take on the enrollment "conclude", "delete", "inactivate" or "deactive" (character)
 #'
-#' @return
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
 #' @export
 #'
 #' @examples
+#' 
+#'  delete_section_enrollments(6348, 12345, "delete")
 delete_section_enrollments <- function(course_id, enrollment_id, task) {
   
   url <- paste0(canvas_url(),
@@ -647,10 +643,12 @@ delete_section_enrollments <- function(course_id, enrollment_id, task) {
 #' @param section_id the canvas id of the section (integer)
 #' @param new_course_id the canvas id of the new course (integer)
 #' 
-#' @return
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
 #' @export
 #'
 #' @examples
+#' 
+#' crosslist_section_to_course(12345, 6348)
 crosslist_section_to_course <- function(section_id,
                                      new_course_id) {
   url <-  paste0(canvas_url(),
@@ -664,7 +662,7 @@ crosslist_section_to_course <- function(section_id,
 
 #' Update course settings
 #' 
-#' This functions update the settings of a course.
+#' This functions update the settings of a course. 
 #'
 #' @param course_id the canvas id of the course (integer)
 #' @param allow_student_discussion_topics allow students to create discussion topics (boolean)
@@ -679,10 +677,12 @@ crosslist_section_to_course <- function(section_id,
 #' @param home_page_announcement_limit set announcements limit on homepage announcements (integer)
 #' 
 #'
-#' @return
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
 #' @export
 #'
 #' @examples
+#' 
+#' update_course_settings(6348, hide_final_grades = T, hide_distribution_graphs = T)
 update_course_settings <- function(course_id,
                                    allow_student_discussion_topics = NULL,
                                    allow_student_forum_attachments = NULL,
@@ -718,14 +718,18 @@ update_course_settings <- function(course_id,
 
 
 #' Get users in account
+#' 
+#' Gets all user information from a specified account. You can use the argument enrollment_type to set a specific filter to user type, to save some time.
 #'
 #' @param account_id the canvas id of the account (integer)
 #' @param enrollment_type the canvas enrollment type. Use either "student", "teacher", "ta", "observer" or "designer" (character)
 #'
-#' @return
+#' @return A dataframe containing information about users in the specified subaccount
 #' @export
 #'
 #' @examples
+#' 
+#' get_users_in_account(123, "teacher")
 get_users_in_account <- function(account_id, enrollment_type = NULL) {
   url <-  paste0(canvas_url(),
                  paste("accounts", account_id, "users", sep = "/"))
@@ -739,14 +743,19 @@ get_users_in_account <- function(account_id, enrollment_type = NULL) {
 }
 
 #' Get users in course
+#' 
+#' Gets all user information from a specified course. You can use the argument enrollment_type to set a specific filter to user type 
+#' or the argument enrollment_state for a specific enrollment state of the user, to save some time.
 #'
 #' @param course_id the canvas id of the course (integer)
 #' @param enrollment_type the canvas enrollment type to return. Use either "StudentEnrollment", "TeacherEnrollment", "TaEnrollment", "ObserverEnrollment" or "DesignerEnrollment". Default returns all roles. (character)
 #' @param enrollment_state include users with a specific state. Use either "active", "invited", "deleted" or "completed". Default is "active"  and "invited" (character)
-#' @return
+#' @return A dataframe containing information about users in the specified course.
 #' @export
 #'
 #' @examples
+#' 
+#' get_users_in_course(6348, enrollment_type = "StudentEnrollment", enrollment_state = "active")
 get_users_in_course <- function(course_id, enrollment_type = NULL, enrollment_state = NULL ) {
   url <-  paste0(canvas_url(),
                  paste("courses", course_id, "enrollments", sep = "/"))

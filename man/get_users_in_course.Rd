@@ -14,6 +14,14 @@ get_users_in_course(course_id, enrollment_type = NULL,
 
 \item{enrollment_state}{include users with a specific state. Use either "active", "invited", "deleted" or "completed". Default is "active"  and "invited" (character)}
 }
+\value{
+A dataframe containing information about users in the specified course.
+}
 \description{
-Get users in course
+Gets all user information from a specified course. You can use the argument enrollment_type to set a specific filter to user type 
+or the argument enrollment_state for a specific enrollment state of the user, to save some time.
+}
+\examples{
+
+get_users_in_course(6348, enrollment_type = "StudentEnrollment", enrollment_state = "active")
 }

@@ -11,6 +11,13 @@ get_single_assignment_in_course(course_id, assignment_id)
 
 \item{assignment_id}{the canvas id of the assignment (integer)}
 }
+\value{
+A dataframe containing information about a specified assignment from a specified course.
+}
 \description{
 Get the information of a single assignment in a course
+}
+\examples{
+
+get_single_assingment_in_course(6348, 10234)
 }

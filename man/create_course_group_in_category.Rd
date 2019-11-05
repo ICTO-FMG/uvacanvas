@@ -21,6 +21,14 @@ create_course_group_in_category(groupcat_id, name, description = NULL,
 
 \item{sis_group_id}{the sis id of the group (integer)}
 }
+\value{
+server response. Either 200 status code if everything went correctly or a specific http status warning.
+}
 \description{
 Creates a group in a predefined Canvas group category
+}
+\examples{
+
+create_course_group_in_category(6348, "Werkgroepen_1")
+create_course_group_in_category(groupcat_id = 6348, name = "Werkgroepen_1", is_public = T, storage_quota_mb = 20)
 }

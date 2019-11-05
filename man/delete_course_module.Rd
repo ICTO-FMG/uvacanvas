@@ -12,6 +12,9 @@ delete_course_module(course_id, module_id)
 
 \item{module_id}{the canvas id of the module (integer)}
 }
+\value{
+server response. Either 200 status code if everything went correctly or a specific http status warning.
+}
 \description{
 delete_course_module
 Deletes a specified module in a course.

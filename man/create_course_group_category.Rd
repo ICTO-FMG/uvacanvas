@@ -21,6 +21,9 @@ create_course_group_category(course_id, groupcat_name,
 
 \item{create_group_count}{}
 }
+\value{
+server response. Either 200 status code if everything went correctly or a specific http status warning.
+}
 \description{
 create_course_group_category
 }

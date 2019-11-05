@@ -10,6 +10,9 @@ get_course_sections(course_id)
 \arguments{
 \item{course_id}{the canvas id of the course (integer)}
 }
+\value{
+A dataframe containing information about section in the specified course.
+}
 \description{
 get_course_sections
 Get sections information in course
