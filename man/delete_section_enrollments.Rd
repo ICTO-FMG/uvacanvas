@@ -2,7 +2,7 @@
 % Please edit documentation in R/simple_functions.R
 \name{delete_section_enrollments}
 \alias{delete_section_enrollments}
-\title{delete_section_enrollments}
+\title{Delete section enrollments}
 \usage{
 delete_section_enrollments(course_id, enrollment_id, task)
 }

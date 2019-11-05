@@ -590,10 +590,12 @@ get_members_in_group <- function(group_id) {
   return(groups)
 }
 
-#' delete_course_section
+#' Delete course section
+#' 
+#' Deletes a specified section in a course.
+#'  
 #' PLEASE NOTE: To delete a course section, the section needs to be empty, This function does not empty the section. Use delete_sections for this task.
-#' Deletes a specified module in a course. 
-#'
+#' 
 #' @param section_id the canvas id of the section (integer)
 #'
 #' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
@@ -601,8 +603,8 @@ get_members_in_group <- function(group_id) {
 #'
 #' @examples
 #' 
-#' delete_section(12345)
-delete_section <- function(section_id) {
+#' delete_course_section(12345)
+delete_course_section <- function(section_id) {
   
   url <- paste0(canvas_url(),
                 paste("sections", section_id, sep = "/"))
@@ -610,7 +612,7 @@ delete_section <- function(section_id) {
   canvas_query(url, args = NULL, "DELETE")
 }
 
-#' delete_section_enrollments
+#' Delete section enrollments
 #' 
 #' Deletes a specified section_enrollment from a section in a course. This does not mean a user will be 
 #' unenrolled from the course, only from the section. You are able to either conclude, delete, inactivate or
