@@ -13,7 +13,8 @@ NULL
 #' as course id, sis id and the id of the term. You can get extra information like syllabus_body, term, course_progress, storage_quota_used_mb, total_students, teachers, account_name
 #' via the include parameter.
 #'
-#' @param account_id the acount id (integer)
+#' @param account_id the account id (integer)
+#' @param include  "syllabus_body", "term", "course_progress", "storage_quota_used_mb", "total_students", "teachers", "account_name" (character)
 #'
 #' @return a data frame of active courses in account
 #' @export
@@ -822,4 +823,48 @@ set_course_name <- function(course_id, name){
   settings <- canvas_query(url,args, "PUT")
   
   return(settings)
+}
+
+#' Get user details
+#' 
+#' Get information about a user
+#' 
+#' @param user_id The canvas id of the user(integer) 
+#' 
+#' @export
+#' @return
+#' 
+#' @example 
+get_user_details <- function(user_id){
+  url <- paste0(canvas_url(),
+               paste("users", user_id, sep = "/"))
+  
+  args <- list(per_page = 100)
+  
+  details <- process_response(url, args)
+  
+  return(details)
+}
+
+#' List course files
+#' 
+#' List all files in a course
+#' 
+#' @param course_id The canvas id of the course (integer)
+#' @param include Include user information to the data. (character) 
+#' 
+#' @export
+#' @return A dataframe with information about all files in a course.
+#' 
+#' @example list_course_files(6348, "user")
+list_course_files <- function(course_id, include = NULL){
+  url <- paste0(canvas_url(),
+                paste("courses", course_id,"files", sep = "/"))
+  
+  args <- list(`include[]` = include,
+               per_page = 100)
+  
+  files <- process_response(url,args)
+  
+  return(files)
 }

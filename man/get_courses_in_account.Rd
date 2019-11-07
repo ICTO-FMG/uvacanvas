@@ -7,7 +7,9 @@
 get_courses_in_account(account_id, include = NULL)
 }
 \arguments{
-\item{account_id}{the acount id (integer)}
+\item{account_id}{the account id (integer)}
+
+\item{include}{"syllabus_body", "term", "course_progress", "storage_quota_used_mb", "total_students", "teachers", "account_name" (character)}
 }
 \value{
 a data frame of active courses in account
