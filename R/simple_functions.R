@@ -868,3 +868,27 @@ list_course_files <- function(course_id, include = NULL){
   
   return(files)
 }
+
+
+#' Get assignment submissions
+#' 
+#' Get all submission info on a assignment
+#' 
+#' @param course_id the canvas id of the course_id (integer)
+#' @param assignment_id the canvas id of the assignment (integer)
+#' 
+#' @export
+#' @return a paginated list 
+#' 
+#' @example 
+get_assignment_submissions <- function(course_id, assignment_id){
+  url <- paste0(canvas_url(),
+                paste("courses", course_id, "assignments", assignment_id, "submissions", sep = "/"))
+  
+  args <- list(per_page = 100)
+  
+  submissions <- process_response(url, args)
+  
+  return(submissions)
+}
+
