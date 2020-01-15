@@ -14,15 +14,16 @@
 #' 
 
 download_grades <- function(course_id, csv_export = T){ 
-  
+
   students_data <- get_users_in_course(course_id = course_id, enrollment_type = "StudentEnrollment")
   
 if(purrr::is_empty(students_data)){
    warning(paste0("There are no students in course ",course_id))
    
  } else{
-  dplyr::select(user_id, sis_user_id, user.sortable_name) %>%
-  unique()
+  students_data <- students_data %>% 
+    dplyr::select(user_id, sis_user_id, user.sortable_name) %>%
+    unique()
   
   assignments <- get_assignments_in_course(course_id)
   
@@ -45,7 +46,7 @@ if(purrr::is_empty(students_data)){
   message("Downloading complete")
   
 if(csv_export == T){
-    write.csv(students_data, file = paste0(getwd(),paste("/gradebook", course_id, sys.date(), sep = "_"),".csv"))
+    write.csv(students_data, file = paste0(getwd(),paste("/gradebook", course_id, Sys.Date(), sep = "_"),".csv"))
   }
 
   return(students_data)
