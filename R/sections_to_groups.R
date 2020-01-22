@@ -1,3 +1,17 @@
+#' Sections to Groups
+#' 
+#' @description This function turns sections in to group in a Canvas course
+#' 
+#' @param course_id the canvas id of the course (integer)
+#' @param groupcat_name the name of the group category (string)
+#' @param skip_section_ids the canvas id's of sections to skip in copying
+#'
+#' @return a paginated list with responses 
+#'
+#' @example sections_to_groups(course_id = 12345, groupcat_name = "Werkgroepen", skip_section_ids = c(123123, 123124, 123125))
+#'
+
+
 sections_to_groups <- function(course_id, groupcat_name, skip_section_ids = NULL) {
 # Create a group category.
   res <- create_course_group_category(course_id, groupcat_name = groupcat_name)
