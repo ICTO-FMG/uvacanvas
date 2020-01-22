@@ -8,8 +8,9 @@
 #'
 #' @return a paginated list with responses 
 #'
-#' @example sections_to_groups(course_id = 12345, groupcat_name = "Werkgroepen", skip_section_ids = c(123123, 123124, 123125))
-#'
+#' @examples
+#' sections_to_groups(course_id = 12345, groupcat_name = "Werkgroepen", skip_section_ids = c(123123, 123124, 123125))
+
 
 
 sections_to_groups <- function(course_id, groupcat_name, skip_section_ids = NULL) {

@@ -19,3 +19,6 @@ a paginated list with responses
 \description{
 This function turns sections in to group in a Canvas course
 }
+\examples{
+sections_to_groups(course_id = 12345, groupcat_name = "Werkgroepen", skip_section_ids = c(123123, 123124, 123125))
+}
