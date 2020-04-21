@@ -35,6 +35,6 @@ for(i in seq_along(course_sections)){
   
   lapply(section_enrollments,delete_section_enrollments, course_id = course_id, task = "delete")
   
-  delete_section(course_sections[i])
+  delete_course_section(course_sections[i])
   }
 }

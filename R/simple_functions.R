@@ -100,6 +100,7 @@ course_copy <- function(course_id,
 #' 
 #' get_course_modules(6824)
 #' 
+
 get_course_modules <- function(course_id) {
   
   url <-
@@ -168,11 +169,11 @@ get_course_pages <- function(course_id) {
 #' @examples
 delete_course_page <- function(course_id,
                                html_url) {
-  delete_page_url <- paste0(canvas_url(),
+  url <- paste0(canvas_url(),
                             paste("courses", course_id, "pages", html_url, sep = "/"))
 
   args <- list(per_page = 100)
-  res <- canvas_query(delete_page_url, args, "DELETE")
+  res <- canvas_query(url, args, "DELETE")
   return(res)
 }
 
@@ -830,16 +831,18 @@ set_course_name <- function(course_id, name){
 #' Get information about a user
 #' 
 #' @param user_id The canvas id of the user(integer) 
+#' @param include Include arguments: "email"
 #' 
 #' @export
 #' @return
 #' 
 #' @example 
-get_user_details <- function(user_id){
+get_user_details <- function(user_id, include = NULL){
   url <- paste0(canvas_url(),
                paste("users", user_id, sep = "/"))
   
-  args <- list(per_page = 100)
+  args <- list(`include[]` = include, 
+               per_page = 100)
   
   details <- process_response(url, args)
   
@@ -876,19 +879,139 @@ list_course_files <- function(course_id, include = NULL){
 #' 
 #' @param course_id the canvas id of the course_id (integer)
 #' @param assignment_id the canvas id of the assignment (integer)
+#' @param include rubrics_assessment
 #' 
 #' @export
 #' @return a paginated list 
 #' 
 #' @example 
-get_assignment_submissions <- function(course_id, assignment_id){
+get_assignment_submissions <- function(course_id, assignment_id, include = NULL){
   url <- paste0(canvas_url(),
                 paste("courses", course_id, "assignments", assignment_id, "submissions", sep = "/"))
   
-  args <- list(per_page = 100)
+  args <- list(per_page = 100,
+               `include[]`= include)
   
   submissions <- process_response(url, args)
   
   return(submissions)
 }
+
+#' Get course tabs
+#' 
+#' Get tabs from course
+#' 
+#' @param course_id the canvas id of the course_id (integer)
+#' 
+#' @export
+#' @return a paginated list 
+#' 
+#' @example 
+get_course_tabs <- function(course_id){
+  url <- paste0(canvas_url(),
+                paste("courses", course_id, "tabs", sep = "/"))
+  
+  args <- list(per_page = 100)
+  
+  tabs <- process_response(url, args)
+  
+  return(tabs)
+}
+
+#' Update course tabs
+#' 
+#' Update tabs from course
+#' 
+#' @param course_id the canvas id of the course_id (integer)
+#' @param tab_id the canvas id of the tab (integer)
+#' @param position the position of the tab in the course (integer)
+#' @param hidden make tab hidden or not (boolean)
+#' 
+#' @export
+#' @return a paginated list 
+#' 
+#' @example 
+update_course_tabs <- function(course_id, tab_id, position, hidden){
+  url <- paste0(canvas_url(),
+                paste("courses", course_id, "tabs", tab_id, sep = "/"))
+  
+  args <- list(`position` = position,
+               `hidden`= hidden)
+  
+  tabs_up <- canvas_query(url, args, "PUT")
+  
+  return(tabs_up)
+}
+
+#' Grade Assignment
+#' 
+#' Grade Assignment
+#' 
+#' @param course_id the canvas id of the course_id (integer)
+#' @param assignment_id the canvas id of the assignment id (integer)
+#' @param user_id the canvas id of the user (integer)
+#' @param grade the grade example "complete" (string)
+#' 
+#' @export
+#' @return a server status report
+#' 
+#' @example 
+grade_assignment <- function(course_id, assignment_id, user_id, grade){
+  url <- paste0(canvas_url(),
+                paste("courses", course_id, "assignments", assignment_id, "submissions", user_id, sep = "/"))
+  
+  args <- list(`submission[posted_grade]` = grade)
+  
+  grades <- canvas_query(url,args, "PUT")
+  
+  return(grades)
+}
+
+#' Get Course Rubric
+#' 
+#'Get information about a rubric
+#' 
+#' @param course_id the canvas id of the course_id (integer)
+#' @param rubric_id the canvas id of the assignment id (integer)
+#' 
+#' @export
+#' @return dataframe with course info
+#' 
+#' @example 
+#' get_course_rubric(12345,435)
+
+get_course_rubric <- function(course_id, rubric_id){
+  url <- paste0(canvas_url(),
+                paste("courses", course_id,"rubrics",rubric_id, sep = "/"))
+  
+  args <- list(per_page = 100)
+  
+  rubrics <- process_response(url,args)
+  
+  return(rubrics)
+}
+
+#' List Rubrics in course
+#' 
+#' List all rubrics in a course
+#' 
+#' @param course_id the canvas id of the course_id (integer)
+#' 
+#' @export
+#' @return dataframe with rubrics info
+#' 
+#' @example 
+#' list_course_rubrics(12345)
+
+list_course_rubrics <- function(course_id){
+  url <- paste0(canvas_url(),
+                paste("courses", course_id,"rubrics", sep = "/"))
+  
+  args <- list(per_page = 100)
+  
+  rubrics_list <- process_response(url,args)
+  
+  return(rubrics_list)
+}
+
 
