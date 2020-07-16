@@ -39,7 +39,7 @@ Most of the utility functions have been copied from daranzolin.
 - get_users_in_account()
 - get_users_in_course()
 - grade_assignment()
-- list_course_rubric()
+- list_course_rubrics()
 - section_to_groups()
 - set_course_dates()
 - set_course_names()

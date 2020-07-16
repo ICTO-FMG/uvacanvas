@@ -41,21 +41,23 @@ get_courses_in_account <- function(account_id, include = NULL) {
 #'
 #' @param course_id the canvas id of the course (integer)
 #' @param syllabus_body the syllabus text body written in html (character)
+#' @param default_view change default view "modules" or "wiki"(character)
 #'
 #' @return 
 #' @export
 #'
 #' @examples
 update_course <- function(course_id,
-                          syllabus_body = NULL) {
+                          syllabus_body = NULL,
+                          default_view = NULL) {
   
   url <- paste0(canvas_url(),
                 paste("courses", course_id, sep = "/"))
   
   # Stop before posting an empty page!?
-  stopifnot(!is.null(syllabus_body))
 
-  args <- list(`course[syllabus_body]` = syllabus_body)
+  args <- list(`course[syllabus_body]` = syllabus_body,
+               `course[default_view]` = default_view)
 
   dat <- canvas_query(url, args, type = "PUT")
   return(dat)
@@ -502,22 +504,26 @@ show_page_content_in_course <- function(course_id,link) {
 #' @param course_id the canvas id of the course (integer)
 #' @param link url link/ name of the page (character)
 #' @param page_body new text written in html (character)
+#' @param page_title new text written in html (character)
+#' @param front_page make this page front page (boolean)
 #'
 #' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
 #' @export
 #'
 #' @examples
-update_page_body <- function(course_id,
-                                     link,page_body) {
+update_page <- function(course_id,
+                        link = NULL,
+                        page_title = NULL,
+                        page_body = NULL,
+                        front_page = NULL) {
   url <-  paste0(canvas_url(),
                  paste("courses", course_id, "pages", link, sep = "/"))
   
-  args <- list(`wiki_page[body]` = page_body)
+  args <- list(`wiki_page[body]` = page_body,
+               `wiki_page[title]` = page_title,
+               `wiki_page[front_page]` = front_page)
   sc(args)
-  resp <- httr::POST(url,
-                     httr::user_agent("Ze adam - https://github.com/icto-psy"),
-                     httr::add_headers(Authorization = paste("Bearer", rcanvas:::check_token())),
-                     body = args)
+  resp <- canvas_query(url, args, "PUT")
   return(resp)
 }
 
@@ -1014,4 +1020,60 @@ list_course_rubrics <- function(course_id){
   return(rubrics_list)
 }
 
+
+
+#' Create page
+#' 
+#' This page updates the page content of a page. Content must be written in html.
+#'
+#' @param course_id the canvas id of the course (integer)
+#' @param page_body new text written in html (character)
+#' @param page_title new page title (character)
+#' @param front_page make this page front page (boolean)
+#' @param published is page published (boolean)
+#'
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
+#' @export
+#'
+#' @examples
+create_page <- function(course_id,
+                        page_title = NULL,
+                        page_body = NULL,
+                        published = T,
+                        front_page = NULL) {
+  url <-  paste0(canvas_url(),
+                 paste("courses", course_id, "pages", sep = "/"))
+  
+  args <- list(`wiki_page[body]` = page_body,
+               `wiki_page[title]` = page_title,
+               `wiki_page[published]` = published,
+               `wiki_page[front_page]` = front_page)
+  
+  resp <- canvas_query(url, args, "POST")
+  return(resp)
+}
+
+#' Set front page
+#' 
+#' Set front page
+#'
+#' @param course_id the canvas id of the course (integer)
+#' @param link url link/ name of the page (character)
+#' @param front_page make this page front page (boolean)
+#'
+#' @return server response. Either 200 status code if everything went correctly or a specific http status warning.
+#' @export
+#'
+#' @examples
+set_front_page <- function(course_id,
+                        link = NULL,
+                        front_page = NULL) {
+  url <-  paste0(canvas_url(),
+                 paste("courses", course_id, "pages", link, sep = "/"))
+  
+  args <- list(`wiki_page[front_page]` = front_page)
+  
+  resp <- canvas_query(url, args, "PUT")
+  return(resp)
+}
 
