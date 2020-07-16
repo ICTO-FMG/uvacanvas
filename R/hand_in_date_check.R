@@ -1,7 +1,7 @@
 hand_in_date_check <- function(course_id){
   
   users <- get_users_in_course(course_id = course_id)
-  users <- users[,grep("^id|^user_id",names(users))]
+  users <- users[,grep("^sis_user_id|^user_id",names(users))]
   
   data <- get_assignments_in_course(course_id = course_id)
   print(data$name)
