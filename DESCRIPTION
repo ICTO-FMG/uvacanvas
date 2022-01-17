@@ -1,0 +1,18 @@
+Package: uvacanvas
+Type: Package
+Title: Utility Functions for ICTO-FMG for CANVAS API
+Version: 0.1.0
+Authors: Bart van Loenen, Adam Sasiadek, Vincent Schreuder
+Maintainer: The package maintainer <icto-psy@uva.nl>
+Description: This package is an interface for the canvas API. The functions are mostly UvA specific. 
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: purrr,
+         httr,
+         readr,
+         lubridate,
+         stringr,
+         jsonlite,
+         dplyr
+RoxygenNote: 7.1.2
