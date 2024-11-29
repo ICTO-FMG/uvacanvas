@@ -32,7 +32,7 @@ download_quiz_results <- function(course_id, quiz_id, csv_export = F){
     
     # Get the quiz results based on the course and quiz id
     quizResults <- process_response(sprintf("%scourses/%s/quizzes/%s/submissions",
-                                            canvas_url, course_id, quiz_id), 
+                                            canvas_url(), course_id, quiz_id), 
                                     list(per_page = 100, `include[]` = NULL))
     
     # Merge the students ids and names with the quiz results data
