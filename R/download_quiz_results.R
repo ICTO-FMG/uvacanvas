@@ -36,7 +36,7 @@ download_quiz_results <- function(course_id, quiz_id, csv_export = F){
                                     list(per_page = 100, `include[]` = NULL))
     
     # Merge the students ids and names with the quiz results data
-    students_data <- left_join(students_data,grade_data, by = c("id" = "user_id"))
+    students_data <- left_join(students_data, quizResults, by = c("id" = "user_id"))
     
   }
   message("Downloading complete")
