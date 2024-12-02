@@ -39,7 +39,7 @@ download_quiz_results <- function(course_id, quiz_id, csv_export = F){
     students_data <- left_join(students_data, quizResults, by = c("id" = "user_id"))
     
     # Get rid of the columns wit irrelevant ids, tokens and urls
-    quizResults <- quizResults[ , c(-1,-4,-5,-6,-7,-20,-27,-28)]
+    quizResults <- quizResults[ , c(-1,-4,-5,-6,-7,-20,-26,-27)]
     
   }
   message("Downloading complete")
