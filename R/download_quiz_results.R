@@ -35,11 +35,11 @@ download_quiz_results <- function(course_id, quiz_id, csv_export = F){
                                             canvas_url(), course_id, quiz_id), 
                                     list(per_page = 100, `include[]` = NULL))
     
-    # Get rid of the columns wit irrelevant ids, tokens and urls
-    quizResults <- quizResults[ , c(-1,-4,-5,-6,-7,-20,-27,-28)]
-    
     # Merge the students ids and names with the quiz results data
     students_data <- left_join(students_data, quizResults, by = c("id" = "user_id"))
+    
+    # Get rid of the columns wit irrelevant ids, tokens and urls
+    quizResults <- quizResults[ , c(-1,-4,-5,-6,-7,-20,-27,-28)]
     
   }
   message("Downloading complete")
