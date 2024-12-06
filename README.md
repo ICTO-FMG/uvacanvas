@@ -5,7 +5,7 @@ Further documentation for this package will follow.
 
 Most of the utility functions have been copied from daranzolin.
 
-# Available functions as of 2022-01-17
+# Available functions as of 2024-12-6
 
 -	course_copy
 -	create_assignment
@@ -23,6 +23,7 @@ Most of the utility functions have been copied from daranzolin.
 -	delete_section_enrollments
 -	delete_sections
 -	download_grades
+- download_quiz_results
 -	enroll_user_in_course 
 -	get_assignment_stats_in_course
 -	get_assignment_submissions
@@ -46,6 +47,7 @@ Most of the utility functions have been copied from daranzolin.
 -	get_user_details
 -	get_users_in_account 
 -	get_users_in_course
+- get_quizzes_in_course
 -	grade_assignment
 -	hand_in_date_check
 -	list_course_files
