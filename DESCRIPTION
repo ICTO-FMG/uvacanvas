@@ -15,4 +15,4 @@ Imports: purrr,
          stringr,
          jsonlite,
          dplyr
-RoxygenNote: 7.1.2
+RoxygenNote: 7.3.2
