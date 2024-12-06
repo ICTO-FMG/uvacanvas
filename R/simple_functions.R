@@ -473,6 +473,29 @@ get_assignments_in_course <- function(course_id) {
   return(assignments)
 }
 
+#' Get quizzes in course
+#' 
+#' Get all quizzes information in Course
+#'
+#' @param course_id the canvas id of the course (integer)
+#'
+#' @return A dataframe containing quiz information of all quizzes from the specified course
+#' @export
+#'
+#' @examples
+#' 
+#' get_assignments_in_course(6824)
+get_quizzes_in_course <- function(course_id) {
+  url <-  paste0(canvas_url(),
+                 paste("courses", course_id, "quizzes", sep = "/"))
+  
+  args <- list(per_page = 100)
+  
+  quizzes <-  process_response(url, args)
+  
+  return(quizzes)
+}
+
 
 #' Show page content of a course
 #' 
